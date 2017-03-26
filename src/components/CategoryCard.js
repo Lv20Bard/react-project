@@ -32,8 +32,12 @@ class CategoryCard extends Component{
                     <CategoryPicture photo={this.props.data.photo} title={this.props.data.name} />
                     <div className="card-block">
                         <CategoryDescriptor id={this.props.data._id} name={this.props.data.title} description={this.props.data.description} />
-                        <Link to={`/refrences/${this.props.data._id}`}>View</Link>
-                        <a onClick={this.handleClick} className="float-right">Delete</a>
+                        
+                        <div className="row">
+                            <Link className="col-sm-4" to={`/refrences/${this.props.data._id}`}>View</Link>
+                            <Link className="col-sm-4" to={`/editCategory`}>Edit</Link>
+                            <a className="col-sm-4" onClick={this.handleClick} >Delete</a>
+                        </div>
                     </div>
                 </div>
             </div>

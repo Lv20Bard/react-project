@@ -33,8 +33,12 @@ class RefrenceCard extends Component{
                         
                         <h5 className="card-text">{this.props.data.refType}</h5>
                         <p className="card-text">{this.props.data.description}</p>
-                        <a href={this.props.data.url}>Go to</a>
-                        <a className="float-right" onClick={this.handleClick}>Delete</a>
+                        <div className="row">
+                            <a className="col-sm-3" href={this.props.data.url}>Go to</a>
+                            <a className="col-sm-3" >Notes</a>
+                            <a className="col-sm-3" >Edit</a>
+                            <a className="col-sm-3" onClick={this.handleClick}>Delete</a>
+                        </div>
                     </div>
                 </div>
             </div>    

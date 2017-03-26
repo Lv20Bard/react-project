@@ -9,7 +9,6 @@ class RefrenceList extends Component{
         super(props);
 
         this.state = {
-            categoryID: this.props.match.params.catagoryID,
             references:[]
         }
     }
@@ -46,7 +45,7 @@ class RefrenceList extends Component{
                     </div>
                     
                     <div className="">
-                        <Link to="/addRefrence"  categoryID={this.state.categoryID}  className="btn btn-default"><i className="material-icons">add</i></Link>    
+                        <Link to={`/addRefrence/${this.props.match.params.catagoryID}`} className="btn btn-default"><i className="material-icons">add</i></Link>    
                     </div>
 
                 </div>

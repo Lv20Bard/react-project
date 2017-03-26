@@ -9,10 +9,11 @@ class RefrenceForm extends Component{
         console.log(props);
 
         this.state = {
-            URL:"",
-            description:"",
             name:"",
-            refType:""
+            description:"",
+            refType:"",
+            URL:""
+
         } 
 
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
@@ -42,20 +43,21 @@ class RefrenceForm extends Component{
     }
 
     handleSubmit(e){
-        axios.post(`http://localhost:8000/refrences/${this.props.data._id}`, {
-            URL: this.state.URL,
-            description: this.state.description,
+        console.log(this.state);
+        axios.post(`http://localhost:8000/references/${this.props.match.params.catagoryID}`, {
             name: this.state.name,
-            refType: this.state.refTypes
+            URL: this.state.URL,
+            type: this.state.refType,
+            description: this.state.description
         })
         .then((res) => {
-            
+            console.log(res);
             if(res.data.message == "Data added"){
-                this.props.history.push(`refrences/${this.props.data._id}`);
+                this.props.history.push(`references/${this.props.match.params.catagoryID}`);
             }
         })
         .catch(function(err){
-            
+            console.log(err);
         });
         
         
@@ -69,7 +71,7 @@ class RefrenceForm extends Component{
         return(
             <div className="pageContent">
                 <div className="col-md-1 hidden-sm-down">
-                    <Link to={`/refrences/${this.props.data._id}`} className="btn btn-default"><i className="material-icons">keyboard_backspace</i></Link>
+                    <Link to={`/refrences/${this.props.match.params.catagoryID}`} className="btn btn-default"><i className="material-icons">keyboard_backspace</i></Link>
                 </div>
                 <div className="col-md-10 col-sm-12">
                     <form onSubmit={this.handleSubmit}>        

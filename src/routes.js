@@ -20,8 +20,8 @@ class Routes extends Component {
                     <Route path='/addCategory' type='add' component={CategoryForm} />
                     <Route path='/editCategory' type='edit' component={CategoryForm} />
 
-                    <Route path='/addRefrence' type='add' component={RefrenceForm} />
-                    <Route path='/editRefrence' type='edit' component={RefrenceForm} />
+                    <Route path='/addRefrence/:catagoryID' type='add' component={RefrenceForm} />
+                    <Route path='/editRefrence/:catagoryID' type='edit' component={RefrenceForm} />
 
 
                     <Route path='/refrences/:catagoryID' component={RefrenceList} />
