@@ -5,6 +5,7 @@ import Categories from './components/Categories'
 import CategoryForm from './components/CategoryForm'
 import RefrenceList from './components/RefrenceList'
 import RefrenceForm from './components/RefrenceForm'
+import RefrenceNotes from './components/RefrenceNotes'
 
 class Routes extends Component {
 
@@ -18,13 +19,16 @@ class Routes extends Component {
                     <Route path='/Categories' component={Categories} />
                     
                     <Route path='/addCategory' type='add' component={CategoryForm} />
-                    <Route path='/editCategory' type='edit' component={CategoryForm} />
+                    <Route path='/editCategory/:categoryID' catMode='edit' component={CategoryForm} />
 
-                    <Route path='/addRefrence/:catagoryID' type='add' component={RefrenceForm} />
-                    <Route path='/editRefrence/:catagoryID' type='edit' component={RefrenceForm} />
+                    <Route path='/addReference/:catagoryID' type='add' component={RefrenceForm} />
+                    <Route path='/editReference/:catagoryID/:referenceID' type='edit' component={RefrenceForm} />
 
 
-                    <Route path='/refrences/:catagoryID' component={RefrenceList} />
+                    <Route path='/references/:catagoryID' component={RefrenceList} />
+
+                    <Route path='/notes/:categoryID/:referenceID' component={RefrenceNotes} />
+
                 </div>
             </HashRouter>
         );

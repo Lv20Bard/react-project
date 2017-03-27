@@ -41,11 +41,11 @@ class RefrenceList extends Component{
             <div className="pageContent">
                 <div className="col-md-1 hidden-sm-down">
                     <div className="">
-                        <Link to="/categories" className="btn btn-default"><i className="material-icons">keyboard_backspace</i></Link>
+                        <Link to="/categories" className="btn bck-btn"><i className="material-icons">keyboard_backspace</i></Link>
                     </div>
                     
                     <div className="">
-                        <Link to={`/addRefrence/${this.props.match.params.catagoryID}`} className="btn btn-default"><i className="material-icons">add</i></Link>    
+                        <Link to={`/addReference/${this.props.match.params.catagoryID}`} className="btn add-btn"><i className="material-icons">add</i></Link>    
                     </div>
 
                 </div>

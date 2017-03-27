@@ -6,14 +6,14 @@ class RefrenceForm extends Component{
     constructor(props){
         super(props);
 
-        console.log(props);
 
         this.state = {
             name:"",
             description:"",
             refType:"",
-            URL:""
-
+            URL:"",
+            mode:"",
+            categoryId:this.props.match.params.catagoryID
         } 
 
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
@@ -25,6 +25,35 @@ class RefrenceForm extends Component{
     
         this.handleReload = this.handleSubmit.bind(this);
     }
+
+    componentDidMount(){
+        console.log(this);
+         if(this.props.match.path === "/editReference/:catagoryID/:referenceID"){
+            this.setState({mode:"edit"});
+            axios.get(`http://localhost:8000/references/ref/${this.props.match.params.referenceID}` ,{
+                
+            })
+            .then((res) =>{
+                
+                this.setState({
+                    name:res.data.data.ref.name,
+                    description:res.data.data.ref.description,
+                    refType:res.data.data.ref.refType,
+                    URL:res.data.data.ref.url
+                      
+                });
+                console.log(this.state);
+            })
+            .then((err) => {
+                console.log(err);
+            });
+        }
+        else{
+            this.setState({mode:"add"});
+        }
+    }
+
+
 
     handleDescriptionChange(e){
         this.setState({description: e.target.value});
@@ -43,23 +72,43 @@ class RefrenceForm extends Component{
     }
 
     handleSubmit(e){
-        console.log(this.state);
-        axios.post(`http://localhost:8000/references/${this.props.match.params.catagoryID}`, {
-            name: this.state.name,
-            URL: this.state.URL,
-            type: this.state.refType,
-            description: this.state.description
-        })
-        .then((res) => {
-            console.log(res);
-            if(res.data.message == "Data added"){
-                this.props.history.push(`references/${this.props.match.params.catagoryID}`);
-            }
-        })
-        .catch(function(err){
-            console.log(err);
-        });
-        
+        if(this.state.mode === "add"){
+            axios.post(`http://localhost:8000/references/${this.props.match.params.catagoryID}`, {
+                categoryId: this.props.match.params.catagoryID,
+                name: this.state.name,
+                description: this.state.description,
+                type: this.state.refType,
+                url: this.state.URL
+            })
+            .then((res) => {
+            
+                if(res.data.message === "Data added"){
+                    this.props.history.push(`/references/${this.props.match.params.catagoryID}`);
+                
+                }
+            })
+            .catch(function(err){
+                console.log(err);
+            });
+        }
+        else if(this.state.mode === "edit"){
+             axios.put(`http://localhost:8000/references/ref/${this.props.match.params.referenceID}`,{
+                name: this.state.name,
+                description: this.state.description,
+                type: this.state.refType,
+                url: this.state.URL
+            })
+            .then((res) =>{
+               
+                if(res.data.message === "Data updated."){
+                    this.props.history.push(`/references/${this.props.match.params.catagoryID}`);
+                
+                }
+            })
+            .catch((err) =>{
+                console.log(err);
+            })
+        }
         
     }
 
@@ -71,7 +120,7 @@ class RefrenceForm extends Component{
         return(
             <div className="pageContent">
                 <div className="col-md-1 hidden-sm-down">
-                    <Link to={`/refrences/${this.props.match.params.catagoryID}`} className="btn btn-default"><i className="material-icons">keyboard_backspace</i></Link>
+                    <Link to={`/references/${this.props.match.params.catagoryID}`} className="btn bck-btn" ><i className="material-icons">keyboard_backspace</i></Link>
                 </div>
                 <div className="col-md-10 col-sm-12">
                     <form onSubmit={this.handleSubmit}>        
@@ -84,7 +133,7 @@ class RefrenceForm extends Component{
                         <h4>Description</h4>
                         <textarea className="description refrence-description" type="text" value={this.state.description} onChange={this.handleDescriptionChange} />
                         <br/>
-                        <input type="submit" value="Submit" className="btn btn-success" />
+                        <input type="submit" value="Submit" className="btn submit-btn" />
                     </form>
                 </div>
                 <div className="col-md-1 hidden-sm-down"></div>

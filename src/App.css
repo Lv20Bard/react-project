@@ -61,3 +61,61 @@ span{
 .float-right{
   float: right !important;
 }
+
+.note{
+  width: 100%;
+  height: auto;
+  
+  margin-top:15px;
+  
+  padding-left: 5px;
+  padding-right: 5px;
+  
+  padding-top: 15px;
+  padding-bottom:15px;
+
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+}
+
+.topNotes{
+  overflow: scroll;
+  height: 300px;
+}
+
+.btn{
+  border-radius: 0;
+  
+  margin-bottom: 5px;
+}
+
+.add-btn{
+  
+  
+}
+
+.bck-btn{
+  
+  
+}
+
+.submit-btn{
+  border-radius:1px;
+  background-color: #8BC34A;
+  color: white;
+  box-shadow:0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+
+}
+
+.form-control{
+  border-radius: 0;
+  border-style:none;
+  border-bottom-style: solid;
+}
+
+.description{
+  border-radius: 0;
+  border-radius: 0;
+  border-style:none;
+  border-bottom-style: solid;
+}

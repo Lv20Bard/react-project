@@ -3,7 +3,6 @@ import CategoryPicture from './CategoryPicture.js';
 import CategoryDescriptor from './CategoryDescriptor.js';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import {browserHistory} from 'react-router';
 
 class CategoryCard extends Component{
     constructor(props){
@@ -13,6 +12,7 @@ class CategoryCard extends Component{
     }
     
     handleClick(){
+        
         axios.delete(`http://localhost:8000/categories/${this.props.data._id}`,{
 
         })
@@ -29,13 +29,16 @@ class CategoryCard extends Component{
         return(
             <div className="col-sm-4">
                 <div className="card">
+                    <div className="card-title">
+                        <h4>{this.props.data.name}</h4>
+                    </div>
                     <CategoryPicture photo={this.props.data.photo} title={this.props.data.name} />
                     <div className="card-block">
                         <CategoryDescriptor id={this.props.data._id} name={this.props.data.title} description={this.props.data.description} />
                         
                         <div className="row">
-                            <Link className="col-sm-4" to={`/refrences/${this.props.data._id}`}>View</Link>
-                            <Link className="col-sm-4" to={`/editCategory`}>Edit</Link>
+                            <Link className="col-sm-4" to={`/references/${this.props.data._id}`}>View</Link>
+                            <Link className="col-sm-4" to={`/editCategory/${this.props.data._id}`}>Edit</Link>
                             <a className="col-sm-4" onClick={this.handleClick} >Delete</a>
                         </div>
                     </div>

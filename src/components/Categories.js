@@ -39,7 +39,7 @@ class Categories extends Component {
         return(
             <div className="pageContent">
                 <div className="col-md-1 hidden-sm-down">
-                    <Link to="/addCategory" className="btn btn-default"><i className="material-icons">add</i></Link>    
+                    <Link to="/addCategory" className="btn add-btn"><i className="material-icons">add</i></Link>    
                 </div>
                 <div className="col-md-10 col-sm-12">
                     {allCategories}
